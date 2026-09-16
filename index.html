@@ -23,17 +23,7 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; -webkit-tap-highlight-color:transparent; user-select:none; }
         html, body { height:100%; width:100%; background:#0a0a1e; overflow:hidden; position:fixed; top:0; left:0; }
-        :root {
-            --primary:#6c5ce7;
-            --secondary:#00cec9;
-            --accent:#fd79a8;
-            --gold:#fdcb6e;
-            --dark:#0a0a1e;
-            --card-bg:rgba(255,255,255,0.06);
-            --safe-bottom:env(safe-area-inset-bottom, 0px);
-            --shadow:0 8px 32px rgba(0,0,0,0.5);
-            --genre-blue: #4fc3f7;
-        }
+        :root { --primary:#6c5ce7; --secondary:#00cec9; --accent:#fd79a8; --gold:#fdcb6e; --dark:#0a0a1e; --card-bg:rgba(255,255,255,0.06); --safe-bottom:env(safe-area-inset-bottom, 0px); --shadow:0 8px 32px rgba(0,0,0,0.5); --genre-blue: #4fc3f7; }
 
         #loadingScreen { position:fixed; inset:0; background:var(--dark); display:flex; align-items:center; justify-content:center; z-index:99999; flex-direction:column; gap:16px; }
         .loading-logo { width:72px; height:72px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); animation:pulse 1.5s infinite; box-shadow:0 0 60px rgba(108,92,231,0.2); }
@@ -74,15 +64,12 @@
         .info-scroll { position:fixed; top:54px; left:0; right:0; z-index:30; padding:4px 12px; height:38px; display:flex; align-items:center; justify-content:center; overflow:hidden; cursor:pointer; background:rgba(0,0,0,0.2); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.03); transition:height 0.3s, background 0.3s; }
         .info-scroll.modo-pesquisa { height:44px; background:rgba(0,0,0,0.4); cursor:default; }
         .info-scroll.hidden { opacity:0; pointer-events:none; height:0; padding:0; overflow:hidden; }
-
         .letreiro { color:#fff; font-size:0.85rem; font-weight:700; white-space:nowrap; animation:scrollText 30s linear infinite; text-shadow:0 0 30px rgba(108,92,231,0.2); letter-spacing:0.5px; width:100%; text-align:center; overflow:hidden; text-overflow:ellipsis; }
         .info-scroll.modo-pesquisa .letreiro { animation:none; white-space:normal; text-overflow:clip; }
         @keyframes scrollText { 0%{transform:translateX(100vw)} 100%{transform:translateX(-100%)} }
-
         .search-input-container { display:none; width:100%; align-items:center; gap:8px; position:relative; }
         .info-scroll.modo-pesquisa .search-input-container { display:flex; }
         .info-scroll.modo-pesquisa .letreiro { display:none; }
-
         #searchInputLetreiro { flex:1; background:transparent; border:none; color:#fff; font-size:0.85rem; font-weight:600; outline:none; padding:4px 32px 4px 6px; width:100%; min-width:0; }
         #searchInputLetreiro::placeholder { color:rgba(255,255,255,0.25); font-weight:400; }
         #searchClearLetreiro { position:absolute; right:6px; top:50%; transform:translateY(-50%); background:transparent; border:none; color:rgba(255,255,255,0.3); font-size:1.1rem; cursor:pointer; display:none; padding:4px 8px; }
@@ -263,9 +250,6 @@
         .instrucoes-box .passo .txt b { color: #fff; }
         .instrucoes-box .btn-fechar-inst { background: linear-gradient(135deg, #6c5ce7, #00cec9); border: none; padding: 12px; border-radius: 20px; color: #fff; font-weight: 700; font-size: 0.9rem; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* ═══════════════════════════════════════════════════════════
-           🔍 MODO FÁCIL — ACESSIBILIDADE PARA PESSOAS MAIS VELHAS
-           ═══════════════════════════════════════════════════════════ */
         body.modo-facil .letreiro { font-size: 1.4rem !important; font-weight: 900 !important; }
         body.modo-facil .genero-nome { font-size: 1.4rem !important; font-weight: 900 !important; letter-spacing: 2px !important; }
         body.modo-facil .timer-lib { font-size: 1.2rem !important; padding: 8px 14px !important; }
@@ -310,32 +294,9 @@
         body.modo-facil .block-content h1 { font-size: 2.6rem !important; }
         body.modo-facil .block-content .sub { font-size: 1.5rem !important; }
 
-        /* Botão Modo Fácil - Estilo */
-        .btn-modo-facil {
-            background: linear-gradient(135deg, #fdcb6e, #fd79a8);
-            border: none;
-            color: #fff;
-            padding: 14px 20px;
-            border-radius: 16px;
-            font-size: 1rem;
-            font-weight: 900;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            margin: 6px 0;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 16px rgba(253,121,168,0.4);
-            transition: all 0.2s;
-        }
+        .btn-modo-facil { background: linear-gradient(135deg, #fdcb6e, #fd79a8); border: none; color: #fff; padding: 14px 20px; border-radius: 16px; font-size: 1rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin: 6px 0; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 4px 16px rgba(253,121,168,0.4); transition: all 0.2s; }
         .btn-modo-facil:active { transform: scale(0.96); }
-        .btn-modo-facil.ativo {
-            background: linear-gradient(135deg, #00b894, #00cec9);
-            box-shadow: 0 4px 16px rgba(0,206,201,0.5);
-        }
+        .btn-modo-facil.ativo { background: linear-gradient(135deg, #00b894, #00cec9); box-shadow: 0 4px 16px rgba(0,206,201,0.5); }
         body.modo-facil .btn-modo-facil { font-size: 1.4rem !important; padding: 22px !important; min-height: 70px !important; }
 
         @media (max-width:480px) {
@@ -390,6 +351,78 @@
     <span class="loading-text">VAI DE BOA! MUSIC</span>
     <div class="loading-progress-container"><div class="loading-progress-fill" id="loadingProgressFill"></div></div>
 </div>
+
+<div id="playerContainer">
+    <div class="media-container" id="mediaContainer"></div>
+    <div class="top-bar">
+        <div class="top-left">
+            <img src="favicon30.png" alt="VDB Music" class="logo-macaco" id="logoMacaco">
+            <button class="btn-genero-fav" id="btnGeneroFav">
+                <span class="genero-nome" id="generoNome">BÔNUS</span>
+                <span class="separador">|</span>
+                <span class="coracao-icon">❤️</span>
+                <span class="fav-badge" id="favBadge">0</span>
+            </button>
+        </div>
+        <div class="top-right">
+            <span class="timer-lib" id="timerLib">24:00:00</span>
+            <span class="audio-status" id="audioStatus">●</span>
+            <button class="menu-btn" id="menuButton"><i class="fas fa-ellipsis-v"></i></button>
+        </div>
+    </div>
+    <div class="info-scroll" id="infoScroll">
+        <p class="letreiro" id="scrollText">🎵 VAI DE BOA! - +3 MIL MÚSICAS - VITALÍCIO R$39,00 🐵 - SERTANEJO • MPB • ROCK • FORRÓ • PAGODE • ROMÂNTICA • FLASHBACK 🎶</p>
+        <div class="search-input-container">
+            <input type="text" id="searchInputLetreiro" placeholder="🔍 Pesquisar música...">
+            <button id="searchClearLetreiro" aria-label="Limpar busca">✕</button>
+        </div>
+    </div>
+    <div class="fav-heart-center">
+        <div class="fav-heart" id="heartBtn"><i class="far fa-heart"></i></div>
+    </div>
+    <div class="bottom-controls" id="bottomControls">
+        <div class="progress-time">
+            <span id="currentTime">0:00</span>
+            <span id="totalTime">0:00</span>
+        </div>
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="buttons-row">
+            <button class="ctrl-btn" id="prevBtn"><i class="fas fa-backward-step"></i></button>
+            <button class="ctrl-btn play-big" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="ctrl-btn" id="nextBtn"><i class="fas fa-forward-step"></i></button>
+            <button class="shuffle-btn" id="shuffleBtn"><i class="fas fa-random"></i></button>
+        </div>
+    </div>
+    <div class="fab-container">
+        <div class="fab-sub" id="fabSub">
+            <button class="fab-sub-btn" id="fabGeneros"><i class="fas fa-guitar"></i>Gêneros</button>
+            <button class="fab-sub-btn" id="fabModoTV"><i class="fas fa-tv"></i>Modo TV</button>
+            <button class="fab-sub-btn" id="fabModoFacil"><i class="fas fa-magnifying-glass-plus"></i>Modo Fácil</button>
+            <button class="fab-sub-btn" id="fabCadastro"><i class="fas fa-user"></i>Cadastro</button>
+            <button class="fab-sub-btn" id="fabFeedback"><i class="fas fa-star"></i>Feedback</button>
+            <button class="fab-sub-btn" id="fabYoutube"><i class="fab fa-youtube"></i>YouTube</button>
+            <button class="fab-sub-btn" id="fabShare"><i class="fas fa-share-alt"></i>Compartilhar</button>
+            <button class="fab-sub-btn" id="fabQrCode"><i class="fas fa-qrcode"></i>QR Code</button>
+        </div>
+        <div class="fab-main" id="fabMain"><i class="fas fa-plus"></i></div>
+    </div>
+    <div class="menu-popup" id="menuPopup">
+        <button id="modoFacilMenuBtn" class="btn-modo-facil"><i class="fas fa-magnifying-glass-plus"></i> MODO FÁCIL</button>
+        <button id="closeMenuBtn"><i class="fas fa-times"></i>Fechar</button>
+        <button id="fullscreenMenuBtn"><i class="fas fa-expand"></i>Tela Cheia</button>
+        <button id="modoTVMenuBtn"><i class="fas fa-tv"></i>Modo TV</button>
+        <button id="liberarAgoraBtn"><i class="fas fa-unlock"></i>Liberar Agora</button>
+        <button id="cadastroMenuBtn"><i class="fas fa-user"></i>Cadastro</button>
+        <button id="reloadPlaylistBtn"><i class="fas fa-sync"></i>Recarregar</button>
+        <button id="feedbackMenuBtn"><i class="fas fa-star"></i>Feedback</button>
+        <button id="sleepMenuBtn"><i class="fas fa-moon"></i>Sleep Timer</button>
+        <button id="qrCodeMenuBtn"><i class="fas fa-qrcode"></i>QR Code</button>
+        <button id="forceUpdateBtn"><i class="fas fa-sync-alt"></i>Atualizar Mídias</button>
+    </div>
+</div>
+
 <div id="blockOverlay" class="active">
     <div class="block-content">
         <img src="favicon30.png" alt="VDB" class="block-logo-img" onerror="this.style.display='none'">
@@ -721,31 +754,10 @@
     function gerarSenhaAleatoria() { const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s=''; for(let i=0;i<12;i++) s+=chars.charAt(Math.floor(Math.random()*chars.length)); return s; }
     function validarSenha(senha) { if(senha===SENHA_MESTRA) return { valida:true, tipo:'mestra', msg:'✅ Liberado com sucesso!' }; try { const decoded=atob(senha); const partes=decoded.split(':'); if(partes.length===2 && partes[0]===appState.fingerprint) return { valida:true, tipo:'cliente', msg:'✅ Liberado permanentemente!' }; } catch(e) {} if(senha.startsWith('UNIV:')) { const partes=senha.split(':'); if(partes.length===3 && partes[2].length===16) return { valida:true, tipo:'universal', msg:'✅ Liberado com senha universal!' }; } return { valida:false }; }
 
-    /* ═══════════════════════════════════════════════════════════
-       🔍 MODO FÁCIL — FUNÇÕES
-       ═══════════════════════════════════════════════════════════ */
-    function ativarModoFacil() {
-        document.body.classList.add('modo-facil');
-        localStorage.setItem('vdb_modo_facil', 'true');
-        if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.add('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-check-circle"></i> MODO FÁCIL ATIVO'; }
-        notif('🔍 Modo Fácil ATIVADO!', 2500, 'success');
-    }
-    function desativarModoFacil() {
-        document.body.classList.remove('modo-facil');
-        localStorage.setItem('vdb_modo_facil', 'false');
-        if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.remove('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-magnifying-glass-plus"></i> MODO FÁCIL'; }
-        notif('🔍 Modo Fácil DESATIVADO', 2000);
-    }
-    function toggleModoFacil() {
-        if(document.body.classList.contains('modo-facil')) desativarModoFacil();
-        else ativarModoFacil();
-    }
-    function carregarModoFacilSalvo() {
-        if(localStorage.getItem('vdb_modo_facil') === 'true') {
-            document.body.classList.add('modo-facil');
-            if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.add('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-check-circle"></i> MODO FÁCIL ATIVO'; }
-        }
-    }
+    function ativarModoFacil() { document.body.classList.add('modo-facil'); localStorage.setItem('vdb_modo_facil', 'true'); if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.add('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-check-circle"></i> MODO FÁCIL ATIVO'; } notif('🔍 Modo Fácil ATIVADO!', 2500, 'success'); }
+    function desativarModoFacil() { document.body.classList.remove('modo-facil'); localStorage.setItem('vdb_modo_facil', 'false'); if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.remove('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-magnifying-glass-plus"></i> MODO FÁCIL'; } notif('🔍 Modo Fácil DESATIVADO', 2000); }
+    function toggleModoFacil() { if(document.body.classList.contains('modo-facil')) desativarModoFacil(); else ativarModoFacil(); }
+    function carregarModoFacilSalvo() { if(localStorage.getItem('vdb_modo_facil') === 'true') { document.body.classList.add('modo-facil'); if(dom.modoFacilMenuBtn) { dom.modoFacilMenuBtn.classList.add('ativo'); dom.modoFacilMenuBtn.innerHTML = '<i class="fas fa-check-circle"></i> MODO FÁCIL ATIVO'; } } }
     carregarModoFacilSalvo();
 
     function updateFavBadge() { dom.favBadge.textContent = appState.favorites.length; if(dom.choiceBadge) dom.choiceBadge.textContent = appState.favorites.length; }
